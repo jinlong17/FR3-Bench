@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FR³ — Financial Receipt Restoration and Reasoning Benchmark</title>
+  <meta name="description" content="FR3: An end-to-end benchmark for financial receipt restoration and numerical reasoning from degraded images. NTIRE 2026 Challenge at CVPR 2026.">
+
+  <!-- Social preview -->
+  <meta property="og:title" content="FR³ Benchmark — CVPR 2026 NTIRE Workshop">
+  <meta property="og:description" content="1,200 paired degraded ↔ clean receipt images and 1,009 financial QA pairs. The first benchmark to couple document restoration with numerical reasoning.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<!-- ====================================================================== -->
+<!-- HERO                                                                    -->
+<!-- ====================================================================== -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">NTIRE 2026 · CVPR Workshop</span>
+
+    <h1 class="title">FR<span class="title-sup">3</span></h1>
+    <h2 class="subtitle">
+      End-to-End <strong style="color:var(--stamp)">Financial Receipt Restoration</strong> and
+      <strong style="color:var(--stamp)">Reasoning</strong> from Degraded Images
+    </h2>
+
+    <div class="venue-badge">CVPR 2026 NTIRE Workshop</div>
+
+    <div class="authors">
+      <span class="author">Author One<sup>1</sup></span>,
+      <span class="author">Author Two<sup>1</sup></span>,
+      <span class="author">Author Three<sup>2</sup></span>
+    </div>
+    <div class="affiliations">
+      <span><sup>1</sup> OPPO AI Center</span>&nbsp;&nbsp;&nbsp;
+      <span><sup>2</sup> University of Würzburg</span>
+    </div>
+
+    <div class="links">
+      <a class="btn btn-primary" href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank">
+        <i class="fas fa-file-pdf"></i> Paper
+      </a>
+      <a class="btn" href="https://github.com/jinlong17/FR3-Bench" target="_blank">
+        <i class="fab fa-github"></i> Code
+      </a>
+      <a class="btn" href="https://huggingface.co/datasets/chickencaesar-yang/NTIRE_2026_Financial_Receipt" target="_blank">
+        <i class="fas fa-database"></i> Dataset
+      </a>
+      <a class="btn" href="https://www.codabench.org/competitions/13606/" target="_blank">
+        <i class="fas fa-trophy"></i> CodaBench
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="perforation"></div>
+
+<!-- ====================================================================== -->
+<!-- TEASER                                                                  -->
+<!-- ====================================================================== -->
+<section class="section tight">
+  <div class="container">
+    <div class="teaser-placeholder">
+      <p style="color:var(--ink-muted);font-size:1rem;">
+        <i class="fas fa-image" style="font-size:2rem;color:var(--accent);display:block;margin-bottom:0.6rem;"></i>
+        <strong>Teaser figure</strong> — degraded receipt → restored receipt → financial QA answer<br>
+        <span style="font-size:0.85rem;">Place a 1200×500 image at <code>static/images/teaser.png</code>.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- ABSTRACT                                                                -->
+<!-- ====================================================================== -->
+<section class="section bg-light" id="abstract">
+  <div class="container narrow">
+    <h2 class="section-title">Abstract</h2>
+    <p class="abstract-text">
+      Real-world financial receipts arrive blurred, faded, compressed, or partially
+      occluded — and yet downstream workflows depend on extracting precise numbers from
+      them for auditing, accounting, and fraud detection. Existing document restoration
+      benchmarks optimise pixel-level fidelity (PSNR, SSIM, LPIPS) but never verify whether
+      the restored output actually supports correct numerical reasoning. Existing receipt-QA
+      benchmarks assume clean inputs and ignore restoration entirely.
+    </p>
+    <p class="abstract-text">
+      We close this gap with <strong>FR³ (Financial Receipt Restoration and Reasoning)</strong>:
+      1,200 paired degraded ↔ clean receipt images and 1,009 computationally-rich financial QA
+      pairs spanning <strong>16 calculation types</strong> (sums, averages, ratios, percentiles,
+      standard deviations, …). Receipts are hand-designed for privacy, printed on a thermal
+      printer, photographed with an OPPO smartphone, and then synthetically degraded. A method
+      is scored <em>primarily by reasoning accuracy</em> — pixel fidelity alone is not enough.
+    </p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- STATS                                                                   -->
+<!-- ====================================================================== -->
+<section class="section" id="dataset">
+  <div class="container">
+    <h2 class="section-title">Benchmark at a Glance</h2>
+    <p class="section-subtitle">The numbers behind FR³.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">1,200</div>
+        <div class="stat-label">Paired Receipt Images</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1,009</div>
+        <div class="stat-label">Financial QA Pairs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">16</div>
+        <div class="stat-label">Calculation Types</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">60+</div>
+        <div class="stat-label">Registered Teams</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">9</div>
+        <div class="stat-label">Final Submissions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">~4.4 GB</div>
+        <div class="stat-label">Dataset Size</div>
+      </div>
+    </div>
+
+    <div class="quality-regimes">
+      <h3>From Degraded Pixel to Correct Number</h3>
+      <div class="regime-grid">
+        <div class="regime-card dq">
+          <div class="regime-icon">🌫️</div>
+          <div class="regime-name">Degraded Input</div>
+          <div class="regime-desc">Blur · noise · compression · occlusion · illumination shifts</div>
+        </div>
+        <div class="regime-card rq">
+          <div class="regime-icon">✨</div>
+          <div class="regime-name">Restoration</div>
+          <div class="regime-desc">Recover legible content. Scored by PSNR / SSIM / LPIPS.</div>
+        </div>
+        <div class="regime-card hq">
+          <div class="regime-icon">🧮</div>
+          <div class="regime-name">Financial Reasoning</div>
+          <div class="regime-desc">Sum · average · ratio · percentile — exact match (1% tolerance).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- SAMPLE QA                                                               -->
+<!-- ====================================================================== -->
+<section class="section bg-light" id="samples">
+  <div class="container narrow">
+    <h2 class="section-title">Example Questions</h2>
+    <p class="section-subtitle">Real questions from the FR³ test set.</p>
+
+    <div style="display:grid;gap:1rem;">
+      <div style="background:var(--card);border-radius:var(--radius);padding:1.4rem 1.6rem;border-left:4px solid var(--stamp);box-shadow:var(--shadow-sm);">
+        <div style="font-size:0.78rem;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0.4rem;">
+          <i class="fas fa-calculator"></i> &nbsp; <strong>sum</strong> · over 1,000 receipts
+        </div>
+        <div style="font-size:1.05rem;color:var(--ink);">
+          “From 2023-01-01 to 2023-12-31, what is the total amount spent (sum of receipt totals)?”
+        </div>
+        <div style="margin-top:0.7rem;font-family:'Source Code Pro',monospace;color:var(--good);font-weight:600;">
+          answer: 62,195.25
+        </div>
+      </div>
+
+      <div style="background:var(--card);border-radius:var(--radius);padding:1.4rem 1.6rem;border-left:4px solid var(--accent);box-shadow:var(--shadow-sm);">
+        <div style="font-size:0.78rem;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0.4rem;">
+          <i class="fas fa-chart-line"></i> &nbsp; <strong>coefficient_of_variation</strong> · 69 receipts in <code>meals</code>
+        </div>
+        <div style="font-size:1.05rem;color:var(--ink);">
+          “What is the coefficient of variation (CV) of amounts in the ‘meals’ category?”
+        </div>
+        <div style="margin-top:0.7rem;font-family:'Source Code Pro',monospace;color:var(--good);font-weight:600;">
+          answer: 287.11
+        </div>
+      </div>
+
+      <div style="background:var(--card);border-radius:var(--radius);padding:1.4rem 1.6rem;border-left:4px solid var(--good);box-shadow:var(--shadow-sm);">
+        <div style="font-size:0.78rem;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0.4rem;">
+          <i class="fas fa-divide"></i> &nbsp; <strong>average</strong> · per item across all receipts
+        </div>
+        <div style="font-size:1.05rem;color:var(--ink);">
+          “What is the average unit price of ‘cheddar_cheese_200g’ across all receipts containing it?”
+        </div>
+        <div style="margin-top:0.7rem;font-family:'Source Code Pro',monospace;color:var(--good);font-weight:600;">
+          answer: 4.51
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- TASKS                                                                   -->
+<!-- ====================================================================== -->
+<section class="section" id="tasks">
+  <div class="container">
+    <h2 class="section-title">The Two Coupled Tasks</h2>
+    <p class="section-subtitle">Restoration is judged by what it enables, not just how clean it looks.</p>
+
+    <div class="tasks-grid">
+      <div class="task-card">
+        <span class="task-number">Task 1</span>
+        <h3>Image Restoration</h3>
+        <p>Recover a clean receipt image from its degraded counterpart. Text legibility and digit fidelity matter more than raw PSNR.</p>
+        <div class="task-metrics">PSNR ↑ · SSIM ↑ · LPIPS ↓</div>
+      </div>
+      <div class="task-card">
+        <span class="task-number">Task 2</span>
+        <h3>Financial Reasoning</h3>
+        <p>Multi-step numerical reasoning across one or many receipts: time-windowed sums, per-category averages, statistical aggregates, percentile filters.</p>
+        <div class="task-metrics">QA Accuracy (1% tolerance)</div>
+      </div>
+    </div>
+
+    <h3 style="text-align:center;margin-top:3.5rem;font-size:1.25rem;font-weight:700;">
+      Sixteen Calculation Types
+    </h3>
+    <p style="text-align:center;color:var(--ink-muted);margin-top:0.6rem;line-height:2;font-size:0.95rem;">
+      <code>sum</code> · <code>average</code> · <code>percentage</code> · <code>range</code> ·
+      <code>maximum</code> · <code>minimum</code> · <code>median</code> · <code>difference</code> ·
+      <code>ratio</code> · <code>standard_deviation</code> · <code>variance</code> ·
+      <code>harmonic_mean</code> · <code>coefficient_of_variation</code> · <code>aggregation</code> ·
+      <code>percentile</code> · <code>interquartile_range</code>
+    </p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- LEADERBOARD                                                             -->
+<!-- ====================================================================== -->
+<section class="section bg-light" id="leaderboard">
+  <div class="container">
+    <h2 class="section-title">NTIRE 2026 Leaderboard</h2>
+    <p class="section-subtitle">
+      Ranked primarily by <strong>QA accuracy</strong>; PSNR / SSIM / LPIPS as secondary indicators.
+    </p>
+
+    <table class="leaderboard-table">
+      <thead>
+        <tr>
+          <th style="text-align:center;width:60px;">Rank</th>
+          <th>Team</th>
+          <th>Accuracy ↑</th>
+          <th>PSNR ↑</th>
+          <th>SSIM ↑</th>
+          <th>LPIPS ↓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="gold">
+          <td style="text-align:center;">🥇</td><td>Maltlab</td><td><strong>0.6404</strong></td><td>15.61</td><td>0.7009</td><td>0.2252</td>
+        </tr>
+        <tr class="silver">
+          <td style="text-align:center;">🥈</td><td>Shelden</td><td>0.6238</td><td>17.54</td><td>0.7270</td><td>0.2902</td>
+        </tr>
+        <tr class="bronze">
+          <td style="text-align:center;">🥉</td><td>gogogochufalou</td><td>0.6215</td><td>18.80</td><td>0.7361</td><td>0.2671</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">4</td><td>yufans</td><td>0.6215</td><td>17.40</td><td>0.6845</td><td>0.2530</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">5</td><td>VEPG</td><td>0.5794</td><td><strong>20.31</strong></td><td><strong>0.7620</strong></td><td><strong>0.1786</strong></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">6</td><td>IMAG2006</td><td>0.5683</td><td>17.99</td><td>0.7475</td><td>0.2111</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">7</td><td>weichow</td><td>0.5150</td><td>17.40</td><td>0.6845</td><td>0.2530</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">8</td><td>se7enxf</td><td>0.3052</td><td>18.93</td><td>0.7136</td><td>0.2330</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">9</td><td>navjot_singh</td><td>0.2253</td><td>13.91</td><td>0.6291</td><td>0.3227</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="leaderboard-caption">
+      The team with the best restoration metrics (VEPG, rank 5) achieves the lowest LPIPS and highest PSNR — yet places only 5th on reasoning accuracy.
+      Pixel fidelity ≠ downstream usefulness.
+    </p>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- DOWNLOAD                                                                -->
+<!-- ====================================================================== -->
+<section class="section" id="download">
+  <div class="container narrow">
+    <h2 class="section-title">Get the Benchmark</h2>
+    <p class="section-subtitle">Annotation JSONs ship with the repo. ~4.4 GB of images on HuggingFace.</p>
+
+    <pre class="code-block"><code>git clone https://github.com/jinlong17/FR3-Bench.git
+cd FR3-Bench
+pip install -r requirements.txt
+
+<span style="color:#a6e3a1;"># Pull the images (~4.4 GB)</span>
+python data/download_data.py --out data/images
+
+<span style="color:#a6e3a1;"># Score a submission</span>
+python evaluation/run_eval.py \
+    --gt data/annotations/val_qa.json \
+    --pred submission.json</code></pre>
+
+    <div class="download-sizes">
+      <div class="size-item"><strong>QA annotations</strong> · ~6 MB <span style="color:var(--ink-muted);">(shipped in repo)</span></div>
+      <div class="size-item"><strong>Validation images</strong> · 789 MB <span style="color:var(--ink-muted);">(200 paired · HuggingFace)</span></div>
+      <div class="size-item"><strong>Test images</strong> · 3.6 GB <span style="color:var(--ink-muted);">(1,000 paired · HuggingFace)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- CITATION                                                                -->
+<!-- ====================================================================== -->
+<section class="section bg-light" id="bibtex">
+  <div class="container narrow">
+    <h2 class="section-title">Citation</h2>
+    <p class="section-subtitle">If you use FR³, please cite our paper.</p>
+
+    <pre class="code-block"><code>@inproceedings{fr3_2026,
+  title     = {NTIRE 2026 Challenge on End-to-End Financial Receipt Restoration
+               and Reasoning from Degraded Images: Datasets, Methods and Results},
+  author    = {... authors ...},
+  booktitle = {CVPR Workshops (NTIRE)},
+  year      = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- FOOTER                                                                  -->
+<!-- ====================================================================== -->
+<footer>
+  <div class="container">
+    <p>
+      <strong>FR³</strong> · NTIRE 2026 · CVPR Workshops &nbsp;·&nbsp;
+      Code <a href="https://github.com/jinlong17/FR3-Bench">MIT</a> &nbsp;·&nbsp;
+      Data <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+    </p>
+    <p style="font-size:0.8rem;opacity:0.7;margin-top:0.6rem;">
+      Hosted by OPPO AI Center · University of Würzburg ·
+      Template adapted from
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic-project-page-template</a>.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

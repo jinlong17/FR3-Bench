@@ -1,0 +1,10 @@
+huggingface_hub>=0.20
+datasets>=2.15
+numpy>=1.24
+Pillow>=10.0
+scikit-image>=0.21
+tqdm>=4.65
+
+# Optional, for LPIPS during restoration evaluation:
+# torch>=2.0
+# lpips>=0.1.4

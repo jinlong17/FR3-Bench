@@ -1,0 +1,21 @@
+# Images — pulled from HuggingFace (public users) or symlinked to ../../benchmark_source (dev).
+# Either way, never committed.
+data/images
+data/images/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+
+# Local outputs
+scores.txt
+restoration_scores.txt
+*.log

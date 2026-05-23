@@ -1,0 +1,15 @@
+# FR3-Bench default config
+# Paths can be relative to repo root or absolute.
+
+dataset:
+  hf_repo_id: "chickencaesar-yang/NTIRE_2026_Financial_Receipt"
+  images_root: "data/images"
+  annotations_root: "data/annotations"
+  splits:
+    val: "val_qa.json"
+    test: "test_qa.json"
+
+evaluation:
+  qa_relative_tolerance: 0.01
+  qa_absolute_tolerance: 0.01
+  restoration_metrics: ["PSNR", "SSIM", "LPIPS"]
